@@ -1,0 +1,249 @@
+<!-- NAV -->
+<header class="topbar">
+  <div class="brand">{{ displayName }}</div>
+
+  <nav class="nav">
+    <a href="#home" >Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO / MASTHEAD -->
+<section id="home" class="hero">
+  <p class="hero-small">Hello, I’m</p>
+  <h1 class="hero-name">{{ displayName }}</h1>
+  <h2 class="hero-role">{{ heroTitle }}</h2>
+
+  <p class="hero-desc">{{ heroDesc }}</p>
+
+  <div class="hero-actions">
+    <a class="btn primary" href="#contact">Get In Touch</a>
+    <a class="btn ghost" href="#projects">View Projects</a>
+  </div>
+
+  <div class="hero-social">
+    <a
+      *ngFor="let s of socials"
+      class="icon-link"
+      [href]="s.url"
+      target="_blank"
+      rel="noopener"
+      [attr.aria-label]="s.label"
+    >
+      <i [class]="s.icon"></i>
+    </a>
+  </div>
+
+  <a class="down" href="#skills" aria-label="Scroll down">
+    <i class="fa-solid fa-chevron-down"></i>
+  </a>
+</section>
+
+<!-- TECH STACK -->
+<section id="skills" class="section">
+  <h2 class="section-title big">Tech Stack</h2>
+
+  <div class="tech-row">
+    <div class="tech-card" *ngFor="let t of tech; let i = index">
+      
+      <div class="tech-head-wrap">
+        <button class="tech-head" type="button" (click)="toggleTech(i)">
+          <span class="tech-title">{{ t.title }}</span>
+
+          <span class="tech-icon" [class.open]="isTechOpen(i)">
+            <i class="fa-solid fa-plus"></i>
+          </span>
+        </button>
+
+        <div class="tech-body" *ngIf="isTechOpen(i)">
+          <div class="tech-item" *ngFor="let item of t.items">
+            {{ item }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT ME -->
+<section id="about" class="section about">
+  <h2 class="section-title">About Me</h2>
+  <div class="underline"></div>
+
+  <div class="about-grid">
+    <div class="about-left">
+      <h3 class="subhead">Who I Am</h3>
+      <p class="muted" *ngFor="let p of whoIAm">{{ p }}</p>
+    </div>
+
+    <div class="about-right">
+      <h3 class="subhead">What I Do</h3>
+
+      <div class="what-item" *ngFor="let w of whatIDo">
+        <div class="bar"></div>
+        <div>
+          <div class="what-title">{{ w.title }}</div>
+          <div class="muted">{{ w.desc }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-row">
+    <div class="highlight-card" *ngFor="let h of highlights">
+      <div class="highlight-icon">
+        <i [class]="h.icon"></i>
+      </div>
+      <div class="highlight-title">{{ h.title }}</div>
+      <div class="muted">{{ h.desc }}</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK EXPERIENCE -->
+<section class="section workexp">
+  <h2 class="section-title">Work Experience</h2>
+  <div class="underline"></div>
+
+  <div class="work-grid">
+    <div class="work-card" *ngFor="let w of workExperience">
+      <div class="work-top">
+        <div class="work-role">{{ w.title }}</div>
+        <div class="work-meta muted">{{ w.company }} • {{ w.date }}</div>
+      </div>
+      
+
+      <ul class="work-bullets">
+        <li *ngFor="let b of w.bullets">{{ b }}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="section courses">
+  <h2 class="section-title">Courses</h2>
+  <div class="underline"></div>
+
+  <div class="courses-grid">
+    <ul class="course-list">
+      <li *ngFor="let c of coursesCol1">{{ c }}</li>
+    </ul>
+
+    <ul class="course-list">
+      <li *ngFor="let c of coursesCol2">{{ c }}</li>
+    </ul>
+
+    <ul class="course-list">
+      <li *ngFor="let c of coursesCol3">{{ c }}</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS -->
+<section id="projects" class="section">
+  <h2 class="section-title">Featured Projects</h2>
+  <div class="underline"></div>
+
+  <div class="projects-grid">
+    <div class="project-card" *ngFor="let p of projects">
+      <div class="project-image-wrap">
+
+        <!-- show image if project has one -->
+        <img
+          *ngIf="p.image"
+          [src]="p.image"
+          [alt]="p.title"
+          class="project-image"
+        />
+      
+        <!-- emoji if no image -->
+        <div *ngIf="!p.image && p.emoji" class="project-emoji">
+          {{ p.emoji }}
+        </div>
+      
+      </div>
+
+      <div class="project-body">
+        <div class="project-title">{{ p.title }}</div>
+        <div class="muted">{{ p.desc }}</div>
+
+        <div class="tag-row">
+          <span class="tag" *ngFor="let t of p.tags">{{ t }}</span>
+        </div>
+
+        <div class="project-links" *ngIf="p.codeUrl || p.demoUrl">
+          <a *ngIf="p.codeUrl" class="plink" [href]="p.codeUrl" target="_blank" rel="noopener">
+            <i class="fa-brands fa-github"></i> Code
+          </a>
+        
+          <a *ngIf="p.demoUrl" class="plink" [href]="p.demoUrl" target="_blank" rel="noopener">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / WHY + LET'S WORK TOGETHER -->
+<section id="contact" class="section contact">
+  <div class="contact-grid">
+    <!-- Left -->
+    <div class="why">
+      <div class="why-badge"><span>Why</span></div>
+      <h3 class="why-title">Choose my service</h3>
+
+      <div class="why-list">
+        <div class="why-row" *ngFor="let w of whyChoose">
+          <i class="fa-solid fa-check"></i>
+          <span>{{ w }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="work">
+      <h3 class="work-title">Let’s work together</h3>
+      <p class="muted">
+        I’m currently seeking co-op and junior-level opportunities where I can apply my skills, learn from experienced teams, and contribute to real-world projects. 
+        If you’d like to connect or discuss potential opportunities, I’d love to hear from you.
+      </p>
+
+      <div class="contact-cards">
+        <a class="contact-card" [href]="'mailto:' + email">
+          <div class="contact-icon"><i class="fa-regular fa-envelope"></i></div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">{{ email }}</div>
+          </div>
+        </a>
+
+        <a class="contact-card" [href]="'tel:' + safeTel(phone)">
+          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">{{ phone }}</div>
+          </div>
+        </a>
+
+        <div class="contact-card no-link">
+          <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">{{ location }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="muted">© {{ year }} {{ displayName }} — Built with Angular</div>
+</footer>
