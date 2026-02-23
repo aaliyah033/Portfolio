@@ -3,7 +3,7 @@
   <div class="brand">{{ displayName }}</div>
 
   <nav class="nav">
-    <a href="#home" >Home</a>
+    <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
@@ -48,7 +48,6 @@
 
   <div class="tech-row">
     <div class="tech-card" *ngFor="let t of tech; let i = index">
-      
       <div class="tech-head-wrap">
         <button class="tech-head" type="button" (click)="toggleTech(i)">
           <span class="tech-title">{{ t.title }}</span>
@@ -64,7 +63,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -115,7 +113,6 @@
         <div class="work-role">{{ w.title }}</div>
         <div class="work-meta muted">{{ w.company }} • {{ w.date }}</div>
       </div>
-      
 
       <ul class="work-bullets">
         <li *ngFor="let b of w.bullets">{{ b }}</li>
@@ -153,19 +150,17 @@
     <div class="project-card" *ngFor="let p of projects">
       <div class="project-image-wrap">
 
-        <!-- show image if project has one -->
         <img
           *ngIf="p.image"
           [src]="p.image"
           [alt]="p.title"
           class="project-image"
         />
-      
-        <!-- emoji if no image -->
+
         <div *ngIf="!p.image && p.emoji" class="project-emoji">
           {{ p.emoji }}
         </div>
-      
+
       </div>
 
       <div class="project-body">
@@ -180,7 +175,7 @@
           <a *ngIf="p.codeUrl" class="plink" [href]="p.codeUrl" target="_blank" rel="noopener">
             <i class="fa-brands fa-github"></i> Code
           </a>
-        
+
           <a *ngIf="p.demoUrl" class="plink" [href]="p.demoUrl" target="_blank" rel="noopener">
             <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo
           </a>
@@ -191,10 +186,9 @@
   </div>
 </section>
 
-<!-- CONTACT / WHY + LET'S WORK TOGETHER -->
+<!-- CONTACT -->
 <section id="contact" class="section contact">
   <div class="contact-grid">
-    <!-- Left -->
     <div class="why">
       <div class="why-badge"><span>Why</span></div>
       <h3 class="why-title">Choose my service</h3>
@@ -207,11 +201,10 @@
       </div>
     </div>
 
-    <!-- Right -->
     <div class="work">
       <h3 class="work-title">Let’s work together</h3>
       <p class="muted">
-        I’m currently seeking co-op and junior-level opportunities where I can apply my skills, learn from experienced teams, and contribute to real-world projects. 
+        I’m currently seeking co-op and junior-level opportunities where I can apply my skills, learn from experienced teams, and contribute to real-world projects.
         If you’d like to connect or discuss potential opportunities, I’d love to hear from you.
       </p>
 
